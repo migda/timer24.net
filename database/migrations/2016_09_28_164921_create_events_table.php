@@ -18,8 +18,9 @@ class CreateEventsTable extends Migration {
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->dateTimeTz('start_date');
-            $table->dateTimeTz('end_date')->nullable();
+            $table->string('slug');
             $table->text('description')->nullable;
+            $table->boolean('is_private');
             $table->timestamps();
         });
     }

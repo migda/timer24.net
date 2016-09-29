@@ -4,6 +4,8 @@
     </IfModule>
 
     RewriteEngine On
+	RewriteCond %{HTTP_HOST} ^www.timer24.net
+	RewriteRule ^(.*)$ http://timer24.net/$1 [R=permanent,L]
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
