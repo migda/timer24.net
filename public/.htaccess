@@ -7,9 +7,9 @@
 	RewriteCond %{HTTP_HOST} ^www.timer24.net
 	RewriteRule ^(.*)$ http://timer24.net/$1 [R=permanent,L]
 
-    # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)/$ /$1 [L,R=301]
+	# Redirect Trailing Slashes...
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.*[^/])$ /$1/ [L,R=301]
 
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d

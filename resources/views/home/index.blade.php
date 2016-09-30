@@ -19,7 +19,7 @@
     <div class="col-md-6">
         <div class="jumbotron">
             <h2>Create your timer:</h2><br>
-            {!! Form::open(array()) !!}
+            {!! Form::open() !!}
             <div class="row">
                 <div class="col-sm-6">
                     {{Form::text('date',null,array('id'=>'date','class'=>'form-control','required'=>'required','placeholder'=>'YYYY-MM-DD HH:mm:ss'))}}

@@ -87,6 +87,7 @@ echo json_encode([
                 <div class="row">
                     <div class="col-sm-6">Timer24.net</div>
                     <div class="col-sm-6 text-right"></div>
+                </div>
             </div>
         </footer>
 
