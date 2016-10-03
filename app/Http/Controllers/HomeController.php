@@ -11,7 +11,7 @@ use DateTime;
 class HomeController extends Controller {
 
     /**
-     * Display a listing of the resource.
+     * Display a home view (info & timer form)
      *
      * @return \Illuminate\Http\Response
      */
@@ -61,8 +61,9 @@ class HomeController extends Controller {
 
     /**
      * Display the specified resource.
-     *
-     * @param  string  $slug
+     * 
+     * @param int $id
+     * @param string $slug
      * @return \Illuminate\Http\Response
      */
     public function event($id, $slug) {
@@ -72,6 +73,19 @@ class HomeController extends Controller {
         } else {
             return redirect('/');
         }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function events() {
+        $events = Event::where('status', 1)
+                ->where('is_private', 0)
+                ->orderBy('start_date', 'DESC')
+                ->paginate(10);
+        return view('home.events')->with('events', $events);
     }
 
 }

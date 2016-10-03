@@ -1,5 +1,4 @@
 <?php
-$timezone = 'UTC';
 return [
 
     /*
@@ -56,7 +55,7 @@ return [
       | ahead and set this to a sensible default for you out of the box.
       |
      */
-    'timezone' => $timezone,
+    'timezone' => 'UTC',
     /*
       |--------------------------------------------------------------------------
       | Application Locale Configuration
