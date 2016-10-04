@@ -81,7 +81,12 @@ echo json_encode([
                 </div>
             </div>
         </nav>
-        @yield('content')
+        <div class="container">
+            <div class="row">
+                @include('partials._messages')
+            </div>
+            @yield('content')
+        </div>
         <footer class="footer">
             <div class="container">
                 <div class="row">
