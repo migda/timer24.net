@@ -14,12 +14,13 @@ class CreateEventsTable extends Migration {
     public function up() {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->nullable();
+            $table->string('title');
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->dateTime('date');
             $table->string('slug');
             $table->text('description')->nullable();
+            $table->integer('displayed')->default(0);
             $table->tinyInteger('timezone')->default(0);
             $table->boolean('is_private')->default(false);
             $table->tinyInteger('status');

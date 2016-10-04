@@ -42,6 +42,11 @@ echo json_encode([
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
+
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{url('events')}}/">Events list</a></li>
+                    </ul>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
