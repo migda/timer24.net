@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title',($event->title ? $event->title : 'Event'))
-
+@section('breadcrumbs')
+<li><a href="{{url('events')}}/">Events</a></li>
+<li><a href="{{url('events')}}/?category={{$event->category->slug}}">{{$event->category->title}}</a></li>
+<li>{{$event->title}}</li>
+@endsection
 @section('content')
 <div class="row">
     <div class="col-md-7">

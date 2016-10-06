@@ -88,6 +88,10 @@ echo json_encode([
             </div>
         </nav>
         <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="{{url('')}}">{{Config::get('app.name')}}</a></li>
+                @yield('breadcrumbs')
+            </ol>
             <div class="row">
                 @include('partials._messages')
             </div>

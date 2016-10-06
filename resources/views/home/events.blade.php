@@ -1,5 +1,13 @@
 @extends('layouts.app')
 @section('title',('Events (timers)' . ($currentCategory ? ' - '.$currentCategory->title : '')))
+@section('breadcrumbs')
+@if($currentCategory) 
+<li><a href="{{url('events')}}/">Events</a></li>
+<li>{{$currentCategory->title}}</li>
+@else
+<li>Events</li>
+@endif
+@endsection
 
 @section('content')
 <div class="row">
