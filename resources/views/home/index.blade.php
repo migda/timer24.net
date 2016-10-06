@@ -27,10 +27,11 @@
                 <p id="ends">-</p>
             </div>
         </div>
-        {{Form::text('title',null,array('class'=>'form-control','placeholder'=>'Title'))}}
+        {{Form::text('title',null,array('class'=>'form-control','required'=>'required','placeholder'=>'Title'))}}
         {{Form::textarea('description',null,array('class'=>'form-control','rows'=>2,'placeholder'=>'Description (optional)'))}}
         {{Form::label('private','Private timer')}}
         {{Form::checkbox('private',null,false)}}
+        {{Form::select('category',[null=>'Choose category'] +  $categories, null, ['class' => 'form-control','required'=>'required']) }}
         {{Form::hidden('offset',0,array('id'=>'offset'))}}
 
         <div class="row" style="margin-top:20px;">

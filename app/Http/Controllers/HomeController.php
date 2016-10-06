@@ -16,7 +16,8 @@ class HomeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('home.index');
+        $categories = \App\Category::orderBy('title')->pluck('title', 'id')->toArray();
+        return view('home.index')->with('categories', $categories);
     }
 
     /**
@@ -30,6 +31,7 @@ class HomeController extends Controller {
         $this->validate($request, array(
             'date' => 'required|date|date_format:"Y-m-d H:i:s',
             'title' => 'required|max:255',
+            'category' => 'required'
         ));
         // store in the database
         $event = new Event;
@@ -45,6 +47,9 @@ class HomeController extends Controller {
             $event->user_id = Auth::id(); // assing user id
         }
         $event->slug = ($request->title != '' ? str_slug($request->title) : time()); // slug from title or timestamp
+        if ($request->category > 0) {
+            $event->category_id = $request->category;
+        }
         $event->timezone = $request->offset;
         if ($request->private == 'on') {
             $event->is_private = true;
@@ -80,12 +85,21 @@ class HomeController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function events() {
-        $events = Event::where('status', 1) // acceopted
-                ->where('is_private', 0) // not private
-                ->orderBy('created_at', 'DESC')
-                ->paginate(10); // 10 resource per page
-        return view('home.events')->with(['events' => $events, 'category' => null]);
+    public function events(\Illuminate\Http\Request $request) {
+        $cat = null;
+        $catId = null;
+        $category = \App\Category::where('slug', $request->input('category'))->first(); // input category slug
+        if ($request->input('category')) {
+            if (!$category) {
+                return redirect()->route('events'); // no category = redirect
+            }
+            $catId = $category->id;
+            $cat = $request->input('category');
+        }
+        $events = Event::getEvents($catId);
+        $countAllEvents = Event::where('status', 1)->count();
+        $categories = \App\Category::orderBy('title')->get(); // category list
+        return view('home.events')->with(['events' => $events, 'countAllEvents' => $countAllEvents, 'currentCategory' => $category, 'categories' => $categories, 'cat' => $cat]);
     }
 
 }

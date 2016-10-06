@@ -26,7 +26,7 @@
 <div class="row">
     <div class="jumbotron text-center">
         {{Form::label('url','Timer\'s URL:')}}
-        {{Form::text('url',url('event/'.$event->id.'/'.$event->slug).'/',array('class'=>'form-control'))}}
+        {{Form::text('url',url('event/'.$event->id.'/'.$event->slug).'/',array('class'=>'form-control', 'onFocus'=>'this.select()'))}}
     </div>
 </div>
 <div class="clearfix"></div>

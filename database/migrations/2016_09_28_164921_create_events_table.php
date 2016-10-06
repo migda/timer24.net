@@ -19,6 +19,8 @@ class CreateEventsTable extends Migration {
             $table->foreign('user_id')->references('id')->on('users');
             $table->dateTime('date');
             $table->string('slug');
+            $table->unsignedInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->text('description')->nullable();
             $table->integer('displayed')->default(0);
             $table->tinyInteger('timezone')->default(0);
