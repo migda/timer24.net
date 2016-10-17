@@ -15,5 +15,6 @@ Route::get('/', 'HomeController@index');
 Route::post('/', 'HomeController@store');
 Route::get('event/{id}/{slug}/', ['as' => 'event', 'uses' => 'HomeController@event']);
 Route::get('/events/', ['as' => 'events', 'uses' => 'HomeController@events']);
+Route::get('/admin/', 'Admin\DashboardController@index');
 
 Auth::routes();

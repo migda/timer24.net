@@ -33,11 +33,11 @@ function updateUserDatetime() {
         $('#ends').css('color', '#18BC9C');
     }
     $('#ends').html('');
-    if (moment.duration(diff, "ms").years() > 0) {
+    if (moment.duration(diff, "ms").years() !== 0) {
         $('#ends').append(moment.duration(diff, "ms").years());
         $('#ends').append('Y,');
     }
-    if (moment.duration(diff, "ms").months() > 0) {
+    if (moment.duration(diff, "ms").months() !== 0) {
         $('#ends').append(moment.duration(diff, "ms").months());
         $('#ends').append('M,');
     }
@@ -45,7 +45,7 @@ function updateUserDatetime() {
         $('#ends').append(moment.duration(diff, "ms").days());
         $('#ends').append('D,<br>');
     }
-    if (moment.duration(diff, "ms").hours() > 0) {
+    if (moment.duration(diff, "ms").hours() !== 0) {
         $('#ends').append(moment.duration(diff, "ms").hours());
         $('#ends').append('h,');
     }

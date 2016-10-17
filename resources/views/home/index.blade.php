@@ -4,19 +4,6 @@
 @section('content')
 <div class="col-md-6">
     <div class="jumbotron">
-        <h1>Timer24.net</h1>
-        <p id="user-date">
-            {{date('H:i:s')}}
-            <br>{{date('d F Y')}}
-        </p>
-        <em>Your timezone: <strong><?= date_default_timezone_get(); ?><span id="user-offset"></span></strong></em> 
-        <hr />
-
-        <p>Create your own countdown timer for every event you want!</p>
-    </div>
-</div>
-<div class="col-md-6">
-    <div class="jumbotron">
         <h2>Create your timer:</h2><br>
         {!! Form::open() !!}
         <div class="row">
@@ -45,6 +32,19 @@
         {!! Form::close() !!}
     </div>
 </div>
+<div class="col-md-6">
+    <div class="jumbotron">
+        <h1>Timer24.net</h1>
+        <p id="user-date">
+            {{date('H:i:s')}}
+            <br>{{date('d F Y')}}
+        </p>
+        <em>Your timezone: <strong><?= date_default_timezone_get(); ?><span id="user-offset"></span></strong></em> 
+        <hr />
+
+        <p>Create your own countdown timer for every event you want!</p>
+    </div>
+</div>
 <div class="clearfix"></div>
 @endsection
 @section('scripts')
@@ -53,5 +53,5 @@
     var userOffset = (dat.getTimezoneOffset() / 60) * (-1);  // UTC time offset
     var stopper = null;
 </script>
-<script src="{{url('js/scripts.js')}}"></script>
+<script src="{{url('js/scripts.js?0')}}"></script>
 @endsection
