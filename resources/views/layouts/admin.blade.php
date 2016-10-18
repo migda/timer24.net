@@ -48,7 +48,7 @@ echo json_encode([
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{url('admin')}}/">Dashboard</a></li>
+                        <li><a href="{{route('admin')}}">Dashboard</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 Events <span class="caret"></span>
@@ -63,8 +63,8 @@ echo json_encode([
                                 Categories <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">All categories</a></li>
-                                <li><a href="#">Create new category</a></li>
+                                <li><a href="{{route('categories.index')}}">All categories</a></li>
+                                <li><a href="{{route('categories.create')}}">Create new category</a></li>
                             </ul>
                         </li>
 
@@ -113,11 +113,13 @@ echo json_encode([
             </div>
         </nav>
         <div class="container">
-            <ol class="breadcrumb">
-                <li><a href="{{url('')}}">{{Config::get('app.name')}}</a></li>
-                <li><a href="{{url('admin')}}/">Admin</a></li>
-                @yield('breadcrumbs')
-            </ol>
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="{{url('')}}">{{Config::get('app.name')}}</a></li>
+                    <li><a href="{{url('admin')}}/">Admin</a></li>
+                    @yield('breadcrumbs')
+                </ol>
+            </div>
             <div class="row">
                 @include('partials._messages')
             </div>

@@ -11,10 +11,15 @@
   |
  */
 
+// Frontend
 Route::get('/', 'HomeController@index');
 Route::post('/', 'HomeController@store');
-Route::get('event/{id}/{slug}/', ['as' => 'event', 'uses' => 'HomeController@event']);
-Route::get('/events/', ['as' => 'events', 'uses' => 'HomeController@events']);
-Route::get('/admin/', 'Admin\DashboardController@index');
+Route::get('event/{id}/{slug}', ['as' => 'event', 'uses' => 'HomeController@event']);
+Route::get('events', ['as' => 'events', 'uses' => 'HomeController@events']);
 
+// Backend
+Route::get('admin', ['as' => 'admin', 'uses' => 'Admin\DashboardController@index']);
+Route::resource('admin/categories', 'Admin\CategoryController',['except' => ['show']]);
+
+// Authentication
 Auth::routes();
