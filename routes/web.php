@@ -19,8 +19,9 @@ Route::get('events', ['as' => 'events', 'uses' => 'HomeController@events']);
 
 // Backend
 Route::get('admin', ['as' => 'admin', 'uses' => 'Admin\DashboardController@index']);
-Route::resource('admin/categories', 'Admin\CategoryController',['except' => ['show']]);
-Route::resource('admin/users', 'Admin\UserController',['except' => ['show']]);
+Route::resource('admin/categories', 'Admin\CategoryController', ['except' => ['show']]);
+Route::resource('admin/users', 'Admin\UserController', ['except' => ['show']]);
+Route::resource('admin/events', 'Admin\EventController', ['as' => 'admin', 'except' => ['show']]);
 
 // Authentication
 Auth::routes();

@@ -17,7 +17,7 @@
             <li><a href="{{url('events')}}/">All categories</a> ({{$countAllEvents}})
                 <ul>
                     @foreach ($categories as $category)
-                    <li><a href="{{url('events/?category='.$category->slug)}}" {{ ($currentCategory && $currentCategory->id == $category->id  ? ' class=text-primary' : '') }}>{{ $category->title }}</a> ({{$category->events()->where('status',1)->count()}})</li>
+                    <li><a href="{{url('events/?category='.$category->slug)}}" {{ ($currentCategory && $currentCategory->id == $category->id  ? ' class=text-primary' : '') }}>{{ $category->title }}</a> ({{$category->events()->where('status',1)->where('is_private',false)->count()}})</li>
                     @endforeach
                 </ul>
             </li>

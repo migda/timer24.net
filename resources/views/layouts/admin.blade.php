@@ -54,8 +54,8 @@ echo json_encode([
                                 Events <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">All events</a></li>
-                                <li><a href="#">Create new event</a></li>
+                                <li><a href="{{route('admin.events.index')}}">All events</a></li>
+                                <li><a href="{{route('admin.events.create')}}">Create new event</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -137,5 +137,8 @@ echo json_encode([
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.42/js/bootstrap-datetimepicker.min.js"></script>
+        @yield('scripts')
     </body>
 </html>
