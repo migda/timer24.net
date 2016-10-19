@@ -105,9 +105,7 @@ class UserController extends AdminController {
     }
 
     /**
-     * Change the specified resource status to 2 (deleted)
-     * Item won't show in the list
-     * Item will be in the storage
+     * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
