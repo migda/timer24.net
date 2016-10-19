@@ -28,7 +28,7 @@
             <h1>Events (timers) {{($currentCategory ? ' - '.$currentCategory->title : '')}}:</h1>
             <ul>
                 @forelse ($events as $event)
-                <li><a href="{{url('event/'.$event->id.'/'.$event->slug)}}/">{{ $event->title }}</a>, <small> created {{date('j F Y', strtotime($event->created_at))}} by {{($event->user_id ? $event->user->name : '~guest')}}</small></li>
+                <li><a href="{{url('event/'.$event->id.'/'.$event->slug)}}/">{{ $event->title }}</a>, <small> created {{date('j F Y', strtotime($event->created_at))}} by {!!($event->user_id ? '<a href="'.route('user',$event->user->id).'/">'.$event->user->name.'</a>' : '~guest')!!}</small></li>
                 @empty
                 <p>No events</p>
                 @endforelse
