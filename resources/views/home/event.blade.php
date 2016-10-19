@@ -39,12 +39,13 @@
 @section('scripts')
 <script>
     var dat = new Date('{{date("Y-m-d H:i:s")}}'); // get server datetime
-    var userOffset = (dat.getTimezoneOffset() / 60) * (-1);  // UTC time offset
-    //stop 
-    var stop = new Date('{{$event->date}}'); // get event datetime
-    stop.setMinutes(stop.getMinutes() + 60 * userOffset); // add offset
+            var userOffset = (dat.getTimezoneOffset() / 60) * ( - 1); // UTC time offset
+            //stop 
+            var stop = new Date('{{$event->date}}'); // get event datetime
+            stop.setMinutes(stop.getMinutes() - 60 * {{$event->timezone}}); // subtract local timezone
+            stop.setMinutes(stop.getMinutes() + 60 * userOffset); // add user offset
 
-    var stopper = moment(stop); // datetime from input
+            var stopper = moment(stop); // datetime from input
 </script>
 <script src="{{url('js/scripts.js?0')}}"></script>
 @endsection

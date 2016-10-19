@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Event;
 use Auth;
 use Session;
-use DateTime;
 
 class HomeController extends Controller {
 
@@ -35,10 +34,7 @@ class HomeController extends Controller {
         ));
         // store in the database
         $event = new Event;
-        $offset = (int) $request->offset * (-1);
-        $dat = new DateTime($request->date); // subtract offset
-        $dat->modify($offset . ' hours');
-        $event->date = $dat->format("Y-m-d H:i:s");
+        $event->date = $request->date;
         $event->title = $request->title;
         if ($request->description != '') {
             $event->description = $request->description;
