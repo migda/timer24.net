@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-sm-8"><h1>@yield('title')</h1>
     </div>
-    <div class="col-sm-4 text-right"><a href="{{route('categories.create')}}" class="btn btn-lg btn-primary">Create new</a></div>
+    <div class="col-sm-4 text-right"><a href="{{route('admin.categories.create')}}" class="btn btn-lg btn-primary">Create new</a></div>
 </div>
 <div class="clearfix"></div>
 <div class="row">
@@ -32,10 +32,10 @@
                 <td>{{{ $category->updated_at }}}</td>
                 <td>
                     <div class="col-sm-6">
-                        <a href="{{route('categories.edit',$category->id)}}" class="btn btn-sm btn-default">Edit</a>
+                        <a href="{{route('admin.categories.edit',$category->id)}}" class="btn btn-sm btn-default">Edit</a>
                     </div>
                     <div class="col-sm-6">
-                        {!! Form::open(array('method'=>'DELETE','route' => array('categories.destroy',$category->id))) !!}
+                        {!! Form::open(array('method'=>'DELETE','route' => array('admin.categories.destroy',$category->id))) !!}
                         {{Form::submit('Delete',['class'=>'btn btn-sm btn-default', 'onClick'=>'return confirm("Delete \"'.$category->title.'\"?");'])}}
                         {!! Form::close() !!}
                     </div>

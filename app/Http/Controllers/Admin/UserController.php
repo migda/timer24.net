@@ -52,10 +52,10 @@ class UserController extends AdminController {
         // save and check if correct
         if ($user->save()) {
             // set flash data with success message
-            Session::flash('success', 'Successfully created - ' . $user->name . '!');
+            Session::flash('success', 'Created - ' . $user->name . '!');
         }
         // redirect
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -98,10 +98,10 @@ class UserController extends AdminController {
         // save and check if correct
         if ($user->save()) {
             // set flash data with success message
-            Session::flash('success', 'Successfully edited - ' . $user->name . '!');
+            Session::flash('success', 'Edited - ' . $user->name . '!');
         }
         // redirect
-        return redirect()->route('users.edit', $user->id);
+        return redirect()->route('admin.users.edit', $user->id);
     }
 
     /**
@@ -114,11 +114,11 @@ class UserController extends AdminController {
         $user = User::find($id);
         if ($user->events->count() == 0) {
             $user->delete();
-            Session::flash('success', 'Successfully deleted - ' . $user->name . '!');
+            Session::flash('success', 'Deleted - ' . $user->name . '!');
         } else {
             Session::flash('warning', 'Delete all events belong to this user!');
         }
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 
 }

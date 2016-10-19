@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <h1>@yield('title')</h1>
-        {!! Form::model($category,array('method'=>'PUT','route' => ['categories.update',$category->id])) !!}
+        {!! Form::model($category,array('method'=>'PUT','route' => ['admin.categories.update',$category->id])) !!}
 
         {{Form::label('title','Name:')}}
         {{Form::text('title',null,array('class'=>'form-control', 'required'=>'required'))}}
@@ -20,6 +20,6 @@
 </div>
 <hr />
 <div class="row">
-    <p><a href="{{route('categories.index')}}">Go Back</a></p>
+    <p><a href="{{route('admin.categories.index')}}">Go Back</a></p>
 </div>
 @endsection

@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <h1>@yield('title')</h1>
-        {!! Form::model($user,array('method'=>'PUT','route' => ['users.update',$user->id])) !!}
+        {!! Form::model($user,array('method'=>'PUT','route' => ['admin.users.update',$user->id])) !!}
 
         {{Form::label('name','Name:')}}
         {{Form::text('name',null,array('class'=>'form-control', 'required'=>'required'))}}
@@ -28,6 +28,6 @@
 </div>
 <hr />
 <div class="row">
-    <p><a href="{{route('users.index')}}">Go Back</a></p>
+    <p><a href="{{route('admin.users.index')}}">Go Back</a></p>
 </div>
 @endsection

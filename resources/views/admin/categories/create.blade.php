@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <h1>@yield('title')</h1>
-        {!! Form::open(array('route' => 'categories.store')) !!}
+        {!! Form::open(array('route' => 'admin.categories.store')) !!}
 
         {{Form::label('title','Name:')}}
         {{Form::text('title',null,array('class'=>'form-control', 'required'=>'required'))}}
@@ -20,6 +20,6 @@
 </div>
 <hr />
 <div class="row">
-    <p><a href="{{route('categories.index')}}">Go Back</a></p>
+    <p><a href="{{route('admin.categories.index')}}">Go Back</a></p>
 </div>
 @endsection

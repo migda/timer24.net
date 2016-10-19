@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-sm-8"><h1>@yield('title')</h1>
     </div>
-    <div class="col-sm-4 text-right"><a href="{{route('users.create')}}" class="btn btn-lg btn-primary">Create new</a></div>
+    <div class="col-sm-4 text-right"><a href="{{route('admin.users.create')}}" class="btn btn-lg btn-primary">Create new</a></div>
 </div>
 <div class="clearfix"></div>
 <div class="row">
@@ -36,10 +36,10 @@
                 <td>{{{ $user->updated_at }}}</td>
                 <td>
                     <div class="col-sm-6">
-                        <a href="{{route('users.edit',$user->id)}}" class="btn btn-sm btn-default">Edit</a>
+                        <a href="{{route('admin.users.edit',$user->id)}}" class="btn btn-sm btn-default">Edit</a>
                     </div>
                     <div class="col-sm-6">
-                        {!! Form::open(array('method'=>'DELETE','route' => array('users.destroy',$user->id))) !!}
+                        {!! Form::open(array('method'=>'DELETE','route' => array('admin.users.destroy',$user->id))) !!}
                         {{Form::submit('Delete',['class'=>'btn btn-sm btn-default', 'onClick'=>'return confirm("Delete \"'.$user->name.'\"?");'])}}
                         {!! Form::close() !!}
                     </div>

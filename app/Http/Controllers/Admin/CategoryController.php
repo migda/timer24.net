@@ -47,10 +47,10 @@ class CategoryController extends AdminController {
         // save and check if correct
         if ($category->save()) {
             // set flash data with success message
-            Session::flash('success', 'Successfully created - ' . $category->title . '!');
+            Session::flash('success', 'Created - ' . $category->title . '!');
         }
         // redirect
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -86,10 +86,10 @@ class CategoryController extends AdminController {
         // save and check if correct
         if ($category->save()) {
             // set flash data with success message
-            Session::flash('success', 'Successfully edited - ' . $category->title . '!');
+            Session::flash('success', 'Edited - ' . $category->title . '!');
         }
         // redirect
-        return redirect()->route('categories.edit', $category->id);
+        return redirect()->route('admin.categories.edit', $category->id);
     }
 
     /**
@@ -102,11 +102,11 @@ class CategoryController extends AdminController {
         $category = Category::find($id);
         if ($category->events->count() == 0) {
             $category->delete();
-            Session::flash('success', 'Successfully deleted - ' . $category->title . '!');
+            Session::flash('success', 'Deleted - ' . $category->title . '!');
         } else {
             Session::flash('warning', 'Delete all events belong to this category!');
         }
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
 }

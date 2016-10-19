@@ -63,8 +63,8 @@ echo json_encode([
                                 Categories <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{route('categories.index')}}">All categories</a></li>
-                                <li><a href="{{route('categories.create')}}">Create new category</a></li>
+                                <li><a href="{{route('admin.categories.index')}}">All categories</a></li>
+                                <li><a href="{{route('admin.categories.create')}}">Create new category</a></li>
                             </ul>
                         </li>
 
@@ -73,8 +73,8 @@ echo json_encode([
                                 Users <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{route('users.index')}}">All users</a></li>
-                                <li><a href="{{route('users.create')}}">Create new user</a></li>
+                                <li><a href="{{route('admin.users.index')}}">All users</a></li>
+                                <li><a href="{{route('admin.users.create')}}">Create new user</a></li>
                             </ul>
                         </li>
                     </ul>
