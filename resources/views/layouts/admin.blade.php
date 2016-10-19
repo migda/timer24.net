@@ -73,8 +73,8 @@ echo json_encode([
                                 Users <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">All users</a></li>
-                                <li><a href="#">Create new user</a></li>
+                                <li><a href="{{route('users.index')}}">All users</a></li>
+                                <li><a href="{{route('users.create')}}">Create new user</a></li>
                             </ul>
                         </li>
                     </ul>

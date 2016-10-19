@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Category;
+use App\User;
 use App\Http\Controllers\AdminController;
 use Session;
 
-class CategoryController extends AdminController {
+class UserController extends AdminController {
 
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class CategoryController extends AdminController {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $categories = \App\Category::orderBy('title')->paginate(10);
-        return view('admin.categories.index')->with('categories', $categories);
+        $users = \App\User::orderBy('id')->paginate(10);
+        return view('admin.users.index')->with('users', $users);
     }
 
     /**
@@ -26,7 +26,7 @@ class CategoryController extends AdminController {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('admin.categories.create');
+        return view('admin.users.create');
     }
 
     /**
@@ -38,19 +38,24 @@ class CategoryController extends AdminController {
     public function store(Request $request) {
         // validate the data
         $this->validate($request, array(
-            'title' => 'required|max:255|unique:categories,slug',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+            'role' => 'required',
         ));
         // store in the database
-        $category = new Category;
-        $category->title = $request->title;
-        $category->slug = str_slug($request->title);
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role = (int) $request->role;
         // save and check if correct
-        if ($category->save()) {
+        if ($user->save()) {
             // set flash data with success message
-            Session::flash('success', 'Successfully created - ' . $category->title . '!');
+            Session::flash('success', 'Successfully created - ' . $user->name . '!');
         }
         // redirect
-        return redirect()->route('categories.index');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -60,11 +65,11 @@ class CategoryController extends AdminController {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $category = Category::find($id);
-        if (!$category) {
+        $user = User::find($id);
+        if (!$user) {
             return null;
         }
-        return view('admin.categories.edit')->with('category', $category);
+        return view('admin.users.edit')->with('user', $user);
     }
 
     /**
@@ -77,19 +82,26 @@ class CategoryController extends AdminController {
     public function update(Request $request, $id) {
         // validate the data
         $this->validate($request, array(
-            'title' => 'required|max:255|unique:categories,slug,' . $id,
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+            'password' => 'min:6|confirmed',
+            'role' => 'required',
         ));
         // save the data to the database
-        $category = Category::find($id);
-        $category->title = $request->title;
-        $category->slug = str_slug($request->title);
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+        }
+        $user->role = (int) $request->role;
         // save and check if correct
-        if ($category->save()) {
+        if ($user->save()) {
             // set flash data with success message
-            Session::flash('success', 'Successfully edited - ' . $category->title . '!');
+            Session::flash('success', 'Successfully edited - ' . $user->name . '!');
         }
         // redirect
-        return redirect()->route('categories.edit', $category->id);
+        return redirect()->route('users.edit', $user->id);
     }
 
     /**
@@ -101,14 +113,14 @@ class CategoryController extends AdminController {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        $category = Category::find($id);
-        if ($category->events->count() == 0) {
-            $category->delete();
-            Session::flash('success', 'Successfully deleted - ' . $category->title . '!');
+        $user = User::find($id);
+        if ($user->events->count() == 0) {
+            $user->delete();
+            Session::flash('success', 'Successfully deleted - ' . $user->name . '!');
         } else {
-            Session::flash('warning', 'Delete all events belong to this category!');
+            Session::flash('warning', 'Delete all events belong to this user!');
         }
-        return redirect()->route('categories.index');
+        return redirect()->route('users.index');
     }
 
 }
