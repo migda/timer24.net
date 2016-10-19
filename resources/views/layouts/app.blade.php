@@ -69,10 +69,13 @@ echo json_encode([
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('profile') }}/">My Profile</a></li>
+                                <li><a href="{{ route('profile.edit') }}/">Edit profile</a></li>
                                 @if (Auth::user()->role == 2)
-                                <li><a href="{{ url('admin') }}/">Admin Panel</a></li>
                                 <li class="divider"></li>
+                                <li><a href="{{ route('admin') }}/">Admin Panel</a></li>
                                 @endif
+                                <li class="divider"></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                        onclick="event.preventDefault();

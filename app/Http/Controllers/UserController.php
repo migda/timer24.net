@@ -33,15 +33,4 @@ class UserController extends Controller {
             return redirect(route('users') . '/');
         }
     }
-
-    /**
-     * Display a listing of logged user events.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function events() {
-        $events = Event::where('user_id', Auth::id());
-        return view('user.events')->with('events', $events);
-    }
-
 }
