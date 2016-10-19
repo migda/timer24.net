@@ -12,11 +12,13 @@
  */
 
 // Frontend
+// guest
 Route::get('/', 'HomeController@index');
 Route::post('/', 'HomeController@store');
 Route::get('event/{id}/{slug}', ['as' => 'event', 'uses' => 'HomeController@event']);
 Route::get('events', ['as' => 'events', 'uses' => 'HomeController@events']);
-
+Route::get('users', ['as' => 'users', 'uses' => 'UserController@index']);
+Route::get('user/{id}', ['as' => 'user', 'uses' => 'UserController@show']);
 // Backend
 Route::get('admin', ['as' => 'admin', 'uses' => 'Admin\DashboardController@index']);
 Route::resource('admin/categories', 'Admin\CategoryController', ['as' => 'admin', 'except' => ['show']]);
