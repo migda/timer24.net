@@ -20,9 +20,10 @@
                 <th>Title</th>
                 <th>User</th>
                 <th>Category</th>
+                <th>Status</th>
                 <th>Created at</th>
                 <th>Updated at</th>
-                <th style="width:200px;">Options</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -32,17 +33,20 @@
                 <td>{{ $event->title }}</td>
                 <td>{{ ($event->user_id > 0 ? $event->user->email : '-') }}</td>
                 <td>{{ $event->category->title }}</td>
+                <td>{{ $event->status }}</td>
                 <td>{{ $event->created_at }}</td>
                 <td>{{ $event->updated_at }}</td>
                 <td>
-                    <div class="col-sm-6">
-                        <a href="{{route('admin.events.edit',$event->id)}}" class="btn btn-sm btn-default">Edit</a>
-                    </div>
-                    <div class="col-sm-6">
-                        {!! Form::open(array('method'=>'DELETE','route' => array('admin.events.destroy',$event->id))) !!}
-                        {{Form::submit('Delete',['class'=>'btn btn-sm btn-default', 'onClick'=>'return confirm("Delete \"'.$event->title.'\"?");'])}}
-                        {!! Form::close() !!}
-                    </div>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="{{route('admin.events.edit',$event->id)}}" class="btn btn-sm btn-default">Edit</a>
+                        </li>
+                        <li>
+                            {!! Form::open(array('method'=>'DELETE','route' => array('admin.events.destroy',$event->id))) !!}
+                            {{Form::submit('Delete',['class'=>'btn btn-sm btn-default', 'onClick'=>'return confirm("Delete \"'.$event->title.'\"?");'])}}
+                            {!! Form::close() !!}
+                        </li>
+                    </ul>
                 </td>
             </tr>
             @endforeach

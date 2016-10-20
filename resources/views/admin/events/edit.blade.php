@@ -30,7 +30,7 @@
         {{Form::label('user','User:')}}
         {{Form::select('user',[null=>'Choose user'] +  $users, $event->user_id, ['class' => 'form-control']) }}
         {{Form::label('status','Status:')}}
-        {{Form::select('status',array(0 => 'Waiting', 1 => 'Accepted'),$event->status, array('class'=>'form-control'))}}
+        {{Form::select('status',array(0 => 'Not published', 1 => 'Published'),$event->status, array('class'=>'form-control'))}}
         {{Form::label('private','Private timer')}}
         {{Form::checkbox('private',null, $event->is_private)}}
 

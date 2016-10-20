@@ -22,7 +22,7 @@
                 <th>Role</th>
                 <th>Created at</th>
                 <th>Updated at</th>
-                <th style="width:200px;">Options</th>
+                <th> </th>
             </tr>
         </thead>
         <tbody>
@@ -35,14 +35,16 @@
                 <td>{{{ $user->created_at }}}</td>
                 <td>{{{ $user->updated_at }}}</td>
                 <td>
-                    <div class="col-sm-6">
-                        <a href="{{route('admin.users.edit',$user->id)}}" class="btn btn-sm btn-default">Edit</a>
-                    </div>
-                    <div class="col-sm-6">
-                        {!! Form::open(array('method'=>'DELETE','route' => array('admin.users.destroy',$user->id))) !!}
-                        {{Form::submit('Delete',['class'=>'btn btn-sm btn-default', 'onClick'=>'return confirm("Delete \"'.$user->name.'\"?");'])}}
-                        {!! Form::close() !!}
-                    </div>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="{{route('admin.users.edit',$user->id)}}" class="btn btn-sm btn-default">Edit</a>
+                        </li>
+                        <li>
+                            {!! Form::open(array('method'=>'DELETE','route' => array('admin.users.destroy',$user->id))) !!}
+                            {{Form::submit('Delete',['class'=>'btn btn-sm btn-default', 'onClick'=>'return confirm("Delete \"'.$user->name.'\"?");'])}}
+                            {!! Form::close() !!}
+                        <li>
+                    </ul>
                 </td>
             </tr>
             @endforeach

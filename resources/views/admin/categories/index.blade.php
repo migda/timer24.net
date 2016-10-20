@@ -20,7 +20,7 @@
                 <th>Name</th>
                 <th>Created at</th>
                 <th>Updated at</th>
-                <th style="width:200px;">Options</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -31,14 +31,16 @@
                 <td>{{{ $category->created_at }}}</td>
                 <td>{{{ $category->updated_at }}}</td>
                 <td>
-                    <div class="col-sm-6">
-                        <a href="{{route('admin.categories.edit',$category->id)}}" class="btn btn-sm btn-default">Edit</a>
-                    </div>
-                    <div class="col-sm-6">
-                        {!! Form::open(array('method'=>'DELETE','route' => array('admin.categories.destroy',$category->id))) !!}
-                        {{Form::submit('Delete',['class'=>'btn btn-sm btn-default', 'onClick'=>'return confirm("Delete \"'.$category->title.'\"?");'])}}
-                        {!! Form::close() !!}
-                    </div>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="{{route('admin.categories.edit',$category->id)}}" class="btn btn-sm btn-default">Edit</a>
+                        </li>
+                        <li>
+                            {!! Form::open(array('method'=>'DELETE','route' => array('admin.categories.destroy',$category->id))) !!}
+                            {{Form::submit('Delete',['class'=>'btn btn-sm btn-default', 'onClick'=>'return confirm("Delete \"'.$category->title.'\"?");'])}}
+                            {!! Form::close() !!}
+                        </li>
+                    </ul>
                 </td>
             </tr>
             @endforeach
