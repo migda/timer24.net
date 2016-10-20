@@ -29,11 +29,14 @@ class Event extends Model {
         return $this->belongsTo('App\Category');
     }
 
-    public static function getEvents($categoryId = null) {
+    public static function getEvents($categoryId = null, $userId = null) {
         $query = Event::where('status', 1); // acceopted
         $query->where('is_private', 0); // not private
         if ($categoryId) {
             $query->where('category_id', $categoryId);
+        }
+        if ($userId) {
+            $query->where('user_id', $userId);
         }
         $query->orderBy('created_at', 'DESC'); // sorting
         return $query->paginate(10);

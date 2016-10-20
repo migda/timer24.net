@@ -14,10 +14,10 @@
     <div class="col-sm-3">
         Categories:
         <ul>
-            <li><a href="{{url('events')}}/">All categories</a> ({{$countAllEvents}})
+            <li><a href="{{route('events.index')}}/">All categories</a> ({{$countAllEvents}})
                 <ul>
                     @foreach ($categories as $category)
-                    <li><a href="{{url('events/?category='.$category->slug)}}" {{ ($currentCategory && $currentCategory->id == $category->id  ? ' class=text-primary' : '') }}>{{ $category->title }}</a> ({{$category->events()->where('status',1)->where('is_private',false)->count()}})</li>
+                    <li><a href="{{route('events.index',['category'=>$category->slug])}}" {{ ($currentCategory && $currentCategory->id == $category->id  ? ' class=text-primary' : '') }}>{{ $category->title }}</a> ({{$category->events()->where('status',1)->where('is_private',false)->count()}})</li>
                     @endforeach
                 </ul>
             </li>
@@ -28,7 +28,7 @@
             <h1>Events (timers) {{($currentCategory ? ' - '.$currentCategory->title : '')}}:</h1>
             <ul>
                 @forelse ($events as $event)
-                <li><a href="{{url('event/'.$event->id.'/'.$event->slug)}}/">{{ $event->title }}</a>, <small> created {{date('j F Y', strtotime($event->created_at))}} by {!!($event->user_id ? '<a href="'.route('user',$event->user->id).'/">'.$event->user->name.'</a>' : '~guest')!!}</small></li>
+                <li><a href="{{route('events.show',[$event->id,$event->slug])}}">{{ $event->title }}</a>, <small> created {{date('j F Y', strtotime($event->created_at))}} by {!!($event->user_id ? '<a href="'.route('user',$event->user->id).'/">'.$event->user->name.'</a>' : '~guest')!!}</small></li>
                 @empty
                 <p>No events</p>
                 @endforelse

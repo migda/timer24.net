@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Edit')
+@section('title','Edit profile')
 @section('breadcrumbs')
 <li><a href="{{route('profile')}}">My Profile</a></li>
 <li>@yield('title')</li>

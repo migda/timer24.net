@@ -69,6 +69,8 @@ echo json_encode([
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('profile.events') }}/">My Events (timers)</a></li>
+                                <li class="divider"></li>
                                 <li><a href="{{ route('profile') }}/">My Profile</a></li>
                                 <li><a href="{{ route('profile.edit') }}/">Edit profile</a></li>
                                 @if (Auth::user()->role == 2)

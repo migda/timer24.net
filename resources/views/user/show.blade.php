@@ -5,21 +5,18 @@
 <li>@yield('title')</li>
 @endsection
 @section('content')
-<div class="row">
-    <div class="jumbotron">
-        <h1>@yield('title')</h1>
-        <h2>Timers:</h2>
-        <ul class="list-unstyled">
-            @forelse($events as $event)
-            <li>
-                <a href="{{route('event',[$event->id,$event->slug])}}">{{$event->title}}</a>, created at {{date('j F Y', strtotime($event->created_at))}}
-            </li>
-            @empty
-            <p>No timers.</p>
-            @endforelse
-        </ul>
-    </div>
-</div>
+<h1>@yield('title')</h1>
+<h3>Timers ({{$count}}):</h3>
+<ul class="list-unstyled">
+    @forelse($events as $event)
+    <li>
+        <a href="{{route('events.show',[$event->id,$event->slug])}}">{{$event->title}}</a>, created at {{date('j F Y', strtotime($event->created_at))}}
+    </li>
+    @empty
+    <p>No timers.</p>
+    @endforelse
+</ul>
+{!! $events->render() !!}
 @endsection
 @section('scripts')
 @endsection

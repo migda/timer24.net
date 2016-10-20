@@ -27,10 +27,13 @@ class UserController extends Controller {
     public function show($id) {
         $user = User::find($id);
         if ($user) {
-            $userEvents = $user->events->where('status', 1);
-            return view('user.show')->with(array('user' => $user, 'events' => $userEvents));
+            $userEvents = \App\Event::where('user_id', $id)->where('is_private', false)->where('status', 1);
+            $count = $userEvents->count();
+            $events = $userEvents->paginate(8);
+            return view('user.show')->with(array('user' => $user, 'events' => $events, 'count' => $count));
         } else {
             return redirect(route('users') . '/');
         }
     }
+
 }

@@ -14,13 +14,15 @@
 // Frontend
 // guest
 Route::get('/', 'HomeController@index');
-Route::post('/', 'HomeController@store');
-Route::get('event/{id}/{slug}', ['as' => 'event', 'uses' => 'HomeController@event']);
-Route::get('events', ['as' => 'events', 'uses' => 'HomeController@events']);
+Route::post('/', 'EventController@store');
+//Route::get('events', ['as' => 'events', 'uses' => 'HomeController@events']);
+Route::resource('events', 'EventController', ['except' => ['show']]);
+Route::get('event/{id}/{slug}', ['as' => 'events.show', 'uses' => 'EventController@show']);
 Route::get('users', ['as' => 'users', 'uses' => 'UserController@index']);
 Route::get('user/{id}', ['as' => 'user', 'uses' => 'UserController@show']);
 //user
 Route::get('profile', ['as' => 'profile', 'uses' => 'ProfileController@index']);
+Route::get('profile/events', ['as' => 'profile.events', 'uses' => 'ProfileController@events']);
 Route::get('profile/edit', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 Route::put('profile/edit', ['as' => 'profile.edit', 'uses' => 'ProfileController@update']);
 // Backend

@@ -10,18 +10,33 @@ use Session;
 
 class ProfileController extends Controller {
 
-    public function __construct() {
-        $this->middleware('auth');
-    }
-
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Display a user profile.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index() {
         $user = User::find(Auth::id());
         return view('profile.index')->with('user', $user);
+    }
+
+    /**
+     * Display user events.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function events() {
+        $events = \App\Event::where('user_id', Auth::id())->where('status', 1)->orderBy('created_at', 'DESC')->paginate(8);
+        return view('profile.events')->with('events', $events);
     }
 
     /**

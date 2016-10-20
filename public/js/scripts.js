@@ -9,12 +9,20 @@ if (userOffset !== 0) {
     if (stopper) {
         $('#stop').html(moment(stop).format('DD MMMM YYYY, HH:mm:ss'));
     }
-    $('#user-offset').html(' ' + (userOffset > 0 ? '+' : '') + moment(userOffset).format('HH:mm'));
+    $('#user-offset').html(' ' + (userOffset > 0 ? '+' : '') + userOffset);
     $("#offset").val(userOffset); // set value of hidden field
 }
-
 var now = userDate;
+if (typeof localOffset !== 'undefined') {
+    var now2 = new Date(dat);
+    now2.setMinutes(dat.getMinutes() + 60 * localOffset); // user datetime based on offset and server datatime;
+}
 function updateUserDatetime() {
+    //clock
+    if (typeof localOffset !== 'undefined') {
+        now2.setSeconds(now.getSeconds() + 1);
+        $('#local-date').html(moment(now2).format('DD MMMM YYYY, HH:mm:ss'));
+    }
     // clock
     now.setSeconds(now.getSeconds() + 1);
     $('#user-date').html(moment(now).format('DD MMMM YYYY, HH:mm:ss'));
