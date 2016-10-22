@@ -69,6 +69,7 @@
     $('#local-stop').html(stopLocal.format('DD MMMM YYYY, HH:mm:ss'));
 
     var stopper = stopUser;
+    var changed = false;
 </script>
 <script src="{{url('js/scripts.js?0')}}"></script>
 @endsection

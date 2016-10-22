@@ -68,10 +68,10 @@
     });
 
     var timeUser = moment(new Date()); // user datetime
-    $('#user-timezone').html(moment.tz(timezoneUser).format('Z') + ' (' + timezoneUser + ')');
     $('#user-date').html(timeUser.format('DD MMMM YYYY, HH:mm:ss'));
 
     var stopper = null;
+    var changed = true;
 </script>
 <script src="{{url('js/scripts.js?0')}}"></script>
 @endsection

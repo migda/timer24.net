@@ -76,6 +76,7 @@
     });
 
     var stopper = null;
+    var changed = false;
 </script>
 <script src="{{url('js/scripts.js?0')}}"></script>
 @endsection

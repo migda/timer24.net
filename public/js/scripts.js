@@ -14,7 +14,6 @@ function updateUserDatetime() {
     //ends 
     ends();
 }
-
 function ends() {
     // ends
     if (stopper) {
@@ -24,6 +23,17 @@ function ends() {
         var a = moment($('#date').val()); // datetime from input
     }
     var b = moment(now); // now
+
+    // offset
+    var offset = 0;
+    $('#timezone').change(function () {
+        changed = true;
+    });
+    if (changed) {
+        var changeTimezone = moment.tz.names()[$('#timezone').val()];
+        var bb = moment.tz(b, changeTimezone);
+        b.add((bb.utcOffset() - b.utcOffset()), 'm'); // offset between new date and old date 
+    }
     var diff = a.diff(b).valueOf(); // timestamp
     if (diff < 0) { // minus value == red color
         $('#ends').css('color', '#E74C3C');
