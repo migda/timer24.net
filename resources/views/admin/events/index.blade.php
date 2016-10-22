@@ -21,8 +21,8 @@
                 <th>User</th>
                 <th>Category</th>
                 <th>Status</th>
+                <th>End date</th>
                 <th>Created at</th>
-                <th>Updated at</th>
                 <th></th>
             </tr>
         </thead>
@@ -34,8 +34,9 @@
                 <td>{{ ($event->user_id > 0 ? $event->user->email : '-') }}</td>
                 <td>{{ $event->category->title }}</td>
                 <td>{{ $event->status }}</td>
-                <td>{{ $event->created_at }}</td>
-                <td>{{ $event->updated_at }}</td>
+            <td>{{ date('d F Y, H:i:s',strtotime($event->date))}}</td>
+            <td>{{ date('d F Y, H:i:s',strtotime($event->created_at))}}</td>
+
                 <td>
                     <ul class="list-inline">
                         <li>

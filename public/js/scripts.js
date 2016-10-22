@@ -1,31 +1,21 @@
-userDate = new Date(dat);
-userDate.setMinutes(dat.getMinutes() + 60 * userOffset); // user datetime based on offset and server datatime
-
 // user date and time info & hidden field - offset
-// clock
-$('#user-date').html(moment(userDate).format('DD MMMM YYYY, HH:mm:ss'));
-// offset
-if (userOffset !== 0) {
-    if (stopper) {
-        $('#stop').html(moment(stop).format('DD MMMM YYYY, HH:mm:ss'));
-    }
-    $('#user-offset').html(' ' + (userOffset > 0 ? '+' : '') + userOffset);
-    $("#offset").val(userOffset); // set value of hidden field
-}
-var now = userDate;
-if (typeof localOffset !== 'undefined') {
-    var now2 = new Date(dat);
-    now2.setMinutes(dat.getMinutes() + 60 * localOffset); // user datetime based on offset and server datatime;
+ends();
+var now = timeUser;
+if ((typeof timeLocal !== 'undefined')) {
+    var now2 = timeLocal;
 }
 function updateUserDatetime() {
-    //clock
-    if (typeof localOffset !== 'undefined') {
-        now2.setSeconds(now.getSeconds() + 1);
+    now.add(1, 's');
+    $('#user-date').html(moment(now).format('DD MMMM YYYY, HH:mm:ss'));
+    if ((typeof timeLocal !== 'undefined')) {
+        now2.add(1, 's');
         $('#local-date').html(moment(now2).format('DD MMMM YYYY, HH:mm:ss'));
     }
-    // clock
-    now.setSeconds(now.getSeconds() + 1);
-    $('#user-date').html(moment(now).format('DD MMMM YYYY, HH:mm:ss'));
+    //ends 
+    ends();
+}
+
+function ends() {
     // ends
     if (stopper) {
         var a = stopper;
@@ -74,6 +64,6 @@ $(function () {
         format: 'YYYY-MM-DD HH:mm:ss',
         useCurrent: false,
         sideBySide: true,
-        defaultDate: userDate
+        defaultDate: timeUser
     });
 });

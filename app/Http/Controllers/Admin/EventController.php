@@ -16,7 +16,7 @@ class EventController extends AdminController {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $events = \App\Event::orderBy('id')->paginate(10);
+        $events = \App\Event::orderBy('id', 'DESC')->paginate(10);
         return view('admin.events.index')->with('events', $events);
     }
 
@@ -43,6 +43,7 @@ class EventController extends AdminController {
             'title' => 'required|max:255',
             'date' => 'required|date|date_format:"Y-m-d H:i:s',
             'category' => 'required',
+            'timezone' => 'required',
         ));
         // store in the database
         $event = new Event;
@@ -57,7 +58,7 @@ class EventController extends AdminController {
             $event->user_id = (int) $request->user; // assing user id
         }
 
-        $event->timezone = $request->offset;
+        $event->timezone = $request->timezone;
         if ($request->private == 'on') {
             $event->is_private = true;
         }
@@ -99,6 +100,7 @@ class EventController extends AdminController {
             'title' => 'required|max:255',
             'date' => 'required|date|date_format:"Y-m-d H:i:s',
             'category' => 'required',
+            'timezone' => 'required',
         ));
         // save the data to the database
         $event = Event::find($id);
@@ -113,7 +115,7 @@ class EventController extends AdminController {
             $event->user_id = (int) $request->user; // assing user id
         }
 
-        $event->timezone = $request->offset;
+        $event->timezone = $request->timezone;
         if ($request->private == 'on') {
             $event->is_private = true;
         } else {

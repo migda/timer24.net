@@ -48,7 +48,7 @@ echo json_encode([
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{url('events')}}/">Events list</a></li>
+                        <li><a href="{{url('events')}}">Events list</a></li>
                     </ul>
 
                     <!-- Left Side Of Navbar -->
@@ -69,13 +69,13 @@ echo json_encode([
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('profile.events') }}/">My Events (timers)</a></li>
+                                <li><a href="{{ route('profile.events') }}">My Events (timers)</a></li>
                                 <li class="divider"></li>
-                                <li><a href="{{ route('profile') }}/">My Profile</a></li>
-                                <li><a href="{{ route('profile.edit') }}/">Edit profile</a></li>
+                                <li><a href="{{ route('profile') }}">My Profile</a></li>
+                                <li><a href="{{ route('profile.edit') }}">Edit profile</a></li>
                                 @if (Auth::user()->role == 2)
                                 <li class="divider"></li>
-                                <li><a href="{{ route('admin') }}/">Admin Panel</a></li>
+                                <li><a href="{{ route('admin') }}">Admin Panel</a></li>
                                 @endif
                                 <li class="divider"></li>
                                 <li>
@@ -101,9 +101,7 @@ echo json_encode([
                 <li><a href="{{url('')}}">{{Config::get('app.name')}}</a></li>
                 @yield('breadcrumbs')
             </ol>
-            <div class="row">
-                @include('partials._messages')
-            </div>
+            @include('partials._messages')
             @yield('content')
         </div>
         <footer class="footer">
@@ -120,6 +118,7 @@ echo json_encode([
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.42/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.6/moment-timezone-with-data.min.js"></script>
         @yield('scripts')
     </body>
 </html>

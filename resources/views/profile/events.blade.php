@@ -17,6 +17,7 @@
             <th>Title</th>
             <th>Category</th>
             <th>Private</th>
+            <th>End date</th>
             <th>Created at</th>
             <th></th>
         </tr>
@@ -27,7 +28,8 @@
             <td>{{ $event->title }}</td>
             <td>{{ $event->category->title }}</td>
             <td>{{ ($event->is_private ? 'Yes' : 'No')}}</td>
-            <td>{{ $event->created_at }}</td>
+            <td>{{ date('d F Y, H:i:s',strtotime($event->date))}}</td>
+            <td>{{ date('d F Y, H:i:s',strtotime($event->created_at))}}</td>
             <td>
                 <ul class="list-inline">
                     <li><a href="{{route('events.show',[$event->id,$event->slug])}}" class="btn btn-sm btn-default">Show</a></li>

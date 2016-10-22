@@ -9,6 +9,6 @@
 <p>
     Name: {{$user->name}}<br>
     E-mail: {{$user->email}}<br>
-    Events: <a href="{{route('profile.events')}}">{{$user->events->count()}}</a><br>
+    Events: <a href="{{route('profile.events')}}">{{$user->events->where('status',1)->count()}}</a><br>
 </p>
 @endsection

@@ -19,8 +19,8 @@
                 {{Form::text('date',null,array('id'=>'date','class'=>'form-control','required'=>'required','placeholder'=>'YYYY-MM-DD HH:mm:ss'))}}
             </div>
             <div class="col-md-4">
-                {{Form::label('offset','Timezone (offset):')}}
-                {{Form::selectRange('offset',-12,14,$event->timezone, array('class'=>'form-control'))}}
+                {{Form::label('timezone','Timezone:')}}
+                {{Form::select('timezone',[-1=>'Choose timezone'],null, array('class'=>'form-control', 'required'=>'required'))}}
             </div>
         </div>
         {{Form::label('category','Category:')}}
@@ -46,6 +46,20 @@
 @endsection
 @section('scripts')
 <script>
+    // timezone form >> select
+    var localTimezone = '{{$event->timezone}}'; // user timezone
+    $.each(moment.tz.names(), function (i, item) {
+        var selected = false;
+        if (i == localTimezone) {
+            selected = true;
+        }
+        $('#timezone').append($('<option>', {
+            value: i,
+            text: item + ' (' + moment.tz(item).format('Z') + ')',
+            selected: selected
+        }));
+    });
+
 // datetimepicker
     $(function () {
         $('#date').datetimepicker({

@@ -52,7 +52,7 @@ class EventController extends Controller {
         $this->validate($request, array(
             'date' => 'required|date|date_format:"Y-m-d H:i:s',
             'title' => 'required|max:255',
-            'category' => 'required'
+            'category' => 'required',
         ));
         // store in the database
         $event = new Event;
@@ -68,7 +68,7 @@ class EventController extends Controller {
         if ($request->category > 0) {
             $event->category_id = $request->category;
         }
-        $event->timezone = $request->offset;
+        $event->timezone = $request->timezone;
         if ($request->private == 'on') {
             $event->is_private = true;
         }
@@ -144,13 +144,14 @@ class EventController extends Controller {
             if ($request->category > 0) {
                 $event->category_id = $request->category;
             }
-            $event->timezone = $request->offset;
+            $event->timezone = $request->timezone;
             if ($request->private == 'on') {
                 $event->is_private = true;
             }
             // redirect to the specified resource if event is saved
             if ($event->save()) {
                 Session::flash('success', 'Edited!');
+                return redirect(route('events.edit', $event->id)); // redirect to user events
             }
         }
         return redirect(route('profile.events')); // redirect to user events
