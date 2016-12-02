@@ -23,7 +23,7 @@ class CreateEventsTable extends Migration {
             $table->foreign('category_id')->references('id')->on('categories');
             $table->text('description')->nullable();
             $table->integer('displayed')->default(0);
-            $table->smallInteger->default(447); // 'Europe/London'
+            $table->smallInteger('timezone')->default(447); // 'Europe/London'
             $table->boolean('is_private')->default(false);
             $table->tinyInteger('status');
             $table->timestamps();
