@@ -9,6 +9,9 @@
 - Moment Timezone 0.5.6
 
 ###Instalation
+- cmd: cp .env.example .env (copy .env.example  file  and rename it to .env)
+- modify .env and set up db connection
+- cmd: php artisan key:generate
 - cmd: php artisan migrate
 - browser: register user via register form
 - db query: access to admin panel: UPDATE users SET role = 2 WHERE id = *user id*;
